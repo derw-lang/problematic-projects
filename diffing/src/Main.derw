@@ -1,24 +1,34 @@
-import "../derw-packages/derw-lang/html/src/Html" exposing ( HtmlNode, RunningProgram, div, text, program, attribute, class_ )
+import "../derw-packages/derw-lang/html/src/Html" exposing ( HtmlNode, RunningProgram, div, text, program, attribute, class_, onClick )
 
 type alias Model = {
+    bool: boolean
 }
 
 initialModel: Model
 initialModel =
-    { }
+    { bool: true }
 
 type Msg =
     Noop
+    | Click
 
 update: Msg -> Model -> (Msg -> void) -> Model
 update msg model send =
     case msg of
         Noop ->
             model
+        Click ->
+            if model.bool then
+                { bool: false }
+            else
+                { bool: true }
 
 view: Model -> HtmlNode Msg
 view model =
-    div [ ] [ ] [ text "Hello" ]
+    if model.bool then
+        div [] [] [ div [ onClick (\_ -> Click) ] [ class_ "hello" ] [ text "Hello" ] ]
+    else
+        div [] [] [ div [] [] [], div [ onClick (\_ -> Click) ] [ class_ "world" ] [ text "World" ] ]
 
 root: any
 root =
