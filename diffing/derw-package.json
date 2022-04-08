@@ -1,0 +1,7 @@
+{
+    "name": "diffing",
+    "exposing": [],
+    "dependencies": {
+        "derw-lang/html": "main"
+    }
+}

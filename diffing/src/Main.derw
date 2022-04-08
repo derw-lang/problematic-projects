@@ -1,0 +1,34 @@
+import "../derw-packages/derw-lang/html/src/Html" exposing ( HtmlNode, RunningProgram, div, text, program, attribute, class_ )
+
+type alias Model = {
+}
+
+initialModel: Model
+initialModel =
+    { }
+
+type Msg =
+    Noop
+
+update: Msg -> Model -> (Msg -> void) -> Model
+update msg model send =
+    case msg of
+        Noop ->
+            model
+
+view: Model -> HtmlNode Msg
+view model =
+    div [ ] [ ] [ text "Hello" ]
+
+root: any
+root =
+    document.getElementById "root"
+
+main: RunningProgram Model Msg
+main =
+    program {
+        initialModel: initialModel,
+        view: view,
+        update: update,
+        root: root
+    }
